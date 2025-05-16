@@ -1,0 +1,26 @@
+-- HackerRank Category: Advanced Join
+-- Problem: Identify projects based on consecutive End_Dates
+-- Tags: CTE, RANK, DATEDIFF, window functions
+
+WITH cte1 AS (
+    SELECT start_date
+    FROM projects
+    WHERE start_date NOT IN (SELECT end_date FROM projects)
+),
+cte2 AS (
+    SELECT start_date, RANK() OVER (ORDER BY start_date) AS rn
+    FROM cte1
+),
+cte3 AS (
+    SELECT end_date
+    FROM projects
+    WHERE end_date NOT IN (SELECT start_date FROM projects)
+),
+cte4 AS (
+    SELECT end_date, RANK() OVER (ORDER BY end_date) AS rn
+    FROM cte3
+)
+SELECT c2.start_date, c4.end_date
+FROM cte2 c2
+JOIN cte4 c4 ON c2.rn = c4.rn
+ORDER BY DATEDIFF(c4.end_date, c2.start_date), c2.start_date;
