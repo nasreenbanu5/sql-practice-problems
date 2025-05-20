@@ -1,0 +1,19 @@
+CTE (cte)
+
+Uses ROW_NUMBER() to assign a rank to each row within each station_id, ordered by temperature ascending.
+
+Uses COUNT(*) OVER (PARTITION BY station_id) to calculate the number of readings per station.
+
+CTE (median)
+
+Selects the row(s) that represent the middle of the ordered temperature list:
+
+For odd count, both FLOOR((cnt + 1) / 2) and FLOOR((cnt + 2) / 2) are the same, selecting one middle value.
+
+For even count, two middle values are selected.
+
+Final SELECT
+
+Aggregates the selected middle temperature values using AVG().
+
+Rounds the result to 2 decimal places using ROUND()
