@@ -1,0 +1,32 @@
+Purpose:
+This query calculates the median value of the lat_n column from the station table using MySQL 8+ features like Common Table Expressions (CTEs) and window functions.
+
+How it works:
+
+ordered CTE:
+
+Selects the lat_n values from the station table.
+
+Uses ROW_NUMBER() window function to assign a sequential row number (rn) to each lat_n, sorted in ascending order.
+
+Uses COUNT(*) OVER () to calculate the total number of rows (cnt), which is repeated in every row.
+
+middle CTE:
+
+Filters rows from ordered to select the middle value(s).
+
+If the total count cnt is odd, it selects the single middle row at position (cnt + 1) / 2.
+
+If cnt is even, it selects the two middle rows at positions (cnt + 1) / 2 and (cnt + 2) / 2.
+
+These two positions correspond to the middle two elements when the dataset has an even number of rows.
+
+Final Select:
+
+Computes the average of the selected middle value(s) using AVG(lat_n).
+
+If there is one middle value (odd count), the average is just that value — the median.
+
+If there are two middle values (even count), the average of these two is the median.
+
+The result is rounded to 4 decimal places for precision.
