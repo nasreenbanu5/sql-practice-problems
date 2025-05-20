@@ -1,0 +1,22 @@
+--calculate the median temperature for each station (station_id) using CTEs and window functions
+
+WITH cte AS (
+    SELECT
+        station_id,
+        temperature,
+        ROW_NUMBER() OVER (PARTITION BY station_id ORDER BY temperature ASC) AS rn,
+        COUNT(*) OVER (PARTITION BY station_id) AS cnt
+    FROM temperature_log
+),
+median AS (
+    SELECT
+        station_id,
+        temperature
+    FROM cte
+    WHERE rn = FLOOR((cnt + 1) / 2) OR rn = FLOOR((cnt + 2) / 2)
+)
+SELECT
+    station_id,
+    ROUND(AVG(temperature), 2) AS median_temp
+FROM median
+GROUP BY station_id;
