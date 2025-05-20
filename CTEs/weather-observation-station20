@@ -1,0 +1,13 @@
+-- Calculate median of lat_n column in station table using CTEs and window functions
+
+WITH ordered AS(
+SELECT
+    lat_n,
+    ROW_NUMBER() OVER(ORDER BY lat_n ASC) AS rn,
+    COUNT(*) OVER() AS cnt
+FROM station), middle AS (
+SELECT
+    lat_n
+FROM ordered
+WHERE rn=FLOOR((cnt+1)/2) OR rn=FLOOR((cnt+2)/2))
+SELECT ROUND(AVG(lat_n),4) AS median FROM middle;
