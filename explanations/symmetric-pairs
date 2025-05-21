@@ -1,0 +1,26 @@
+1. Identify Potential Symmetric Pairs
+Use a self-join on the table to pair each row (X, Y) with any row that has (Y, X).
+
+This ensures you capture all symmetric matches.
+
+2. Prevent Duplicate Pair Output
+Since both (X, Y) and (Y, X) will be returned by the join, apply a condition like X <= Y to keep only one version.
+
+This ensures symmetry is only shown once, not twice.
+
+3. Handle Identical Pairs Carefully
+Pairs where X = Y (e.g., (20, 20)) could be falsely treated as symmetric on their own.
+
+To validate these as true symmetric pairs, they must occur more than once in the table — i.e., you need at least two identical rows.
+
+4. Use Grouping and Aggregation
+Group the result by the pair values.
+
+Apply HAVING conditions to:
+
+Keep symmetric non-identical pairs.
+
+Retain identical pairs only if they appear more than once.
+
+5. Sort the Output
+To match the required format and order, sort the result by the first and second elements of the pair.
