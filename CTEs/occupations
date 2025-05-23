@@ -1,0 +1,14 @@
+WITH cte AS (
+SELECT
+    name,
+    occupation,
+    ROW_NUMBER() OVER(PARTITION BY occupation ORDER BY name) AS row_num
+FROM occupations)
+
+SELECT 
+    MIN(CASE WHEN occupation='Doctor' THEN name ELSE NULL END),
+    MIN(CASE WHEN occupation='Professor' THEN name ELSE NULL END),
+    MIN(CASE WHEN occupation='Singer' THEN name ELSE NULL END),
+    MIN(CASE WHEN occupation='Actor' THEN name ELSE NULL END)
+FROM cte
+GROUP BY row_num;
