@@ -1,0 +1,7 @@
+First, it creates a temporary table (using a Common Table Expression or CTE) where each person is assigned a number (ROW_NUMBER) based on their occupation and sorted alphabetically. This number helps align people in rows later on.
+
+Then, in the main query, it uses CASE WHEN statements to place each name under the correct occupation column—Doctor, Professor, Singer, or Actor.
+
+Next, it uses MIN to safely extract the one name that matches the condition per row (since there's only one person per occupation per row number).
+
+Finally, it groups all this by the row number, so each row in the output contains names from each occupation side-by-side. If an occupation has fewer people than others, the missing spots are filled with NULL.
