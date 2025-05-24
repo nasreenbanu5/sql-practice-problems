@@ -1,0 +1,19 @@
+SELECT
+  salesperson,
+  MIN(CASE WHEN mnth = 'Jan' THEN amount ELSE NULL END) AS Jan,
+  MIN(CASE WHEN mnth = 'Feb' THEN amount ELSE NULL END) AS Feb,
+  MIN(CASE WHEN mnth = 'Mar' THEN amount ELSE NULL END) AS Mar
+FROM sales
+GROUP BY salesperson;
+
+
+
+
+Explanation
+Goal: Pivot the sales table so that each salesperson has one row, and their monthly sales appear as columns (Jan, Feb, Mar).
+
+CASE WHEN: Checks the mnth value for each record to match the desired month, and outputs the corresponding amount.
+
+MIN(): Used to return a single value for each salesperson-month combination. Since each person has only one entry per month, MIN (or MAX) works equally well.
+
+GROUP BY salesperson: Ensures each row of the final output is for one salesperson.
