@@ -1,0 +1,31 @@
+✅ Step 1: Join Students and Grades Tables
+Combine the students and grades tables using a condition.
+
+Each student is matched with a grade based on their marks falling within a specific range defined by the grade (minimum and maximum marks).
+
+This creates a meaningful connection between the student's marks and their corresponding grade level.
+
+✅ Step 2: Use Conditional Logic for Displaying Names
+Use a conditional expression to control whether a student’s name should be shown.
+
+If a student's grade is less than 8, their name is hidden (replaced with a null value).
+
+If the grade is 8 or higher, the student’s name is displayed normally.
+
+✅ Step 3: Select Required Information
+From the joined result, select three fields:
+
+The student’s name (only if grade is 8 or more),
+
+The grade,
+
+The marks.
+
+✅ Step 4: Order the Results
+The final result is sorted by:
+
+Grade in descending order (higher grades appear first),
+
+Then by name in alphabetical order (if names are shown),
+
+Then by marks in ascending order (for same grade and name).
