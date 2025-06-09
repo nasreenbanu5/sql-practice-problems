@@ -1,0 +1,31 @@
+tep 1: Join Employees and Bonuses Tables
+Combine the employees and bonuses tables using a condition.
+
+Match each employee to a bonus level based on their salary falling within the minimum and maximum salary range defined in the bonuses table.
+
+✅ Step 2: Conditional Display of Names
+If the bonus level is less than 2, hide the employee's name (display null).
+
+Otherwise, display the employee’s actual name.
+
+This helps focus the report on mid-to-high bonus levels while still keeping other data visible.
+
+✅ Step 3: Select Desired Output
+Select four fields for the report:
+
+Name (conditionally displayed),
+
+Bonus level,
+
+Salary,
+
+Bonus amount (calculated as salary × percentage ÷ 100).
+
+✅ Step 4: Sort the Final Output
+Sort the final data:
+
+First by bonus level in descending order (higher bonuses first),
+
+Then by name alphabetically,
+
+Then by salary in ascending order (for employees with same name and bonus level).
