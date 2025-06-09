@@ -1,5 +1,5 @@
 SELECT
-CASE WHEN b.bonus_level<2 THEN NULL ELSE e.name end,
+CASE WHEN b.bonus_level<2 THEN NULL ELSE e.name END,
 b.bonus_level,
 e.salary,(e.salary*b.percentage/100) AS bonus_amount
 FROM employees e
