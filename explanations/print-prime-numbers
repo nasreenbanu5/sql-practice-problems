@@ -1,0 +1,15 @@
+Step 1: Generate a Sequence of Numbers
+
+The query starts by generating a list of numbers beginning from 2 and ending at 999 using a recursive CTE.
+It keeps adding 1 to the previous number until it reaches the upper limit. This creates a virtual table of all numbers in that range.
+
+Step 2: Identify Prime Numbers
+
+Next, the query filters this list to extract only the prime numbers.
+For each number in the list, it checks whether there exists any smaller number (from the same list) that can divide it without a remainder.
+If such a divisor exists, the number is not prime. If no such divisor is found, the number is considered prime and included in the result.
+
+Step 3: Format the Output
+
+Finally, all the identified prime numbers are combined into a single string, with each number separated by an ampersand (&).
+This makes the output compact and easy to read or export.
