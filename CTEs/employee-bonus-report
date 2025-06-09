@@ -1,0 +1,7 @@
+SELECT
+CASE WHEN b.bonus_level<2 THEN NULL ELSE e.name end,
+b.bonus_level,
+e.salary,(e.salary*b.percentage/100) AS bonus_amount
+FROM employees e
+JOIN bonuses b ON e.salary BETWEEN b.min_salary AND b.max_salary
+ORDER BY b.bonus_level DESC, e.name,e.salary;
